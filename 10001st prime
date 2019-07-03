@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+            const int N = 10001;
+            List<long> primes = new List<long>();
+            primes.Add(2);
+            primes.Add(3);
+            long nextPrime=0;
+            long j = 0;
+            int i = 2;
+            int d=2;
+            long temp = 0;
+            while( i<N){
+                nextPrime = primes[i-1]+d;
+                temp = nextPrime;
+                for(j = 2; j<= temp; j++){
+                    if(temp%j == 0){
+                        temp /= j;
+                        j--; //j is highest factor
+                    }
+                }
+                if(nextPrime == j){ //if highest factor is myself then im a prime
+                    primes.Add(nextPrime); 
+                    i++; //so move on to next prime
+                    d=2;
+                }
+                //but if im not a prime, what to do? Move to the next number. so i need to increment nextPrime. But nextprime depends on primes[]
+                else{
+                    d++;
+                }
+                Console.WriteLine("{0}th prime: "+primes[primes.Count-1], primes.Count);
+            }
+        }
+    }
+}
