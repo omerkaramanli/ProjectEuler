@@ -1,0 +1,40 @@
+using System;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int result=0;
+            for(int i = 999; i>=100; i--){
+               for(int j = 999; j>=100; j--){
+                   int number = i*j;
+                   if(palindrome(number) && number>result){
+                       result = number;
+                   }
+               }
+           }
+           Console.WriteLine(result);
+        }
+        
+        static bool palindrome(int number){
+            string num = number.ToString();
+            string firstHalf = num.Substring(0,3);
+            string secondHalf = num.Substring(3);
+            char[] arr = new char[3];
+            for(int j = 0; j<3; j++){
+                arr[j] = firstHalf[j];
+            }
+            char temp = arr[2];
+            arr[2] = arr[0];
+            arr[0] = temp;
+            firstHalf = arr[0].ToString()+arr[1].ToString()+arr[2].ToString();
+            if(firstHalf == secondHalf){
+                return true;
+            }
+            else return false;                
+        }
+           
+    }
+}
