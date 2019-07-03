@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+            List<int> numbers = new List<int>();
+            List<int> prime = new List<int>();
+            long result = 1;
+            List<int> nonprime = new List<int>();
+
+            for (int i = 0; i < 20; i++)    numbers.Add(i + 1);
+            
+
+            for (int k = 19; k > 0; k--){
+                bool isPrime = true;
+                for (int j = 19; j > 0; j--){
+                    if (k != j){
+                        if (numbers[k] % numbers[j] == 0) isPrime = false;
+                    }
+                }
+                if (isPrime) prime.Add(numbers[k]);
+                if (!isPrime) nonprime.Add(numbers[k]);
+            }
+
+            List<int> divided = new List<int>();
+            bool check = true;
+            while (check){
+                check = false;
+                for (int m = prime.Count - 1; m > 0; m--){
+                    bool division = false;
+                    for (int n = 0; n < nonprime.Count; n++){
+                        if (nonprime[n] % prime[m] == 0){
+                            nonprime[n] /= prime[m];
+                            if (!divided.Exists(x => x == prime[m])) divided.Add(prime[m]);
+                            division = true;
+                        }
+                        if (nonprime[n] != 1) check = true;
+                    }
+                    if (division) result *= prime[m];
+                }
+            }
+            for (int y = 0; y < nonprime.Count; y++) Console.WriteLine(nonprime[y]);
+            for (int d = 0; d < divided.Count; d++) result /= divided[d];
+            for (int l = 0; l < prime.Count; l++) result *= prime[l];
+            Console.WriteLine(result);
+        }
+    }
+}
