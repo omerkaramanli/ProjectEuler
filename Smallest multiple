@@ -42,7 +42,6 @@ namespace euler
                     if (division) result *= prime[m];
                 }
             }
-            for (int y = 0; y < nonprime.Count; y++) Console.WriteLine(nonprime[y]);
             for (int d = 0; d < divided.Count; d++) result /= divided[d];
             for (int l = 0; l < prime.Count; l++) result *= prime[l];
             Console.WriteLine(result);
