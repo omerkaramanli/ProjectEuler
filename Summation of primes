@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+            const int N = 2000000;
+            List<long> primes = new List<long>();
+            primes.Add(2);
+            primes.Add(3);
+            long nextPrime=0;
+            long j = 0;
+            int i = 2;
+            int d=2;
+            int n = 3;
+            long temp = 0;
+            long result = primes[0]+primes[1];
+            while( n<N){
+                nextPrime = primes[i-1]+d;
+                temp = nextPrime;
+                
+                
+                
+                
+                bool check = true;
+                for(int k = 0; k<primes.Count-1; k++){  //if there is a prime in my prime list that can divide the next possible prime number
+                        if(temp%primes[k]==0){ check = false;   //then its not a prime number so return false
+                            break;  //and break the loop, faster
+                        }
+                    }
+                
+                
+                
+                
+                if(check){
+                for(j = 2; j<= temp; j++){
+                    if(temp%j == 0){
+                        temp /= j;
+                        j--; //j is highest factor
+                    }
+                }
+                if(nextPrime == j){ //if highest factor is myself then im a prime
+                    primes.Add(nextPrime); 
+                    i++; //so move on to next prime
+                    d=2;
+                    n+=d;
+                    result += primes[i-1];
+                    Console.WriteLine("Result: {0}",result);
+                }
+                //but if im not a prime, what to do? Move to the next number. so i need to increment nextPrime. But nextprime depends on primes[]
+                else{
+                    d+=2;
+                    n+=2;
+                }
+                }
+                else{
+                    d+=2;
+                    n+=2;
+                }
+                Console.WriteLine("N: {0}",n);                
+            }
+            Console.WriteLine("Final Result: {0}",result);
+        }
+    }
+}
