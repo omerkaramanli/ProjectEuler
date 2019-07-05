@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+            BigInteger fac = 1;
+            for(int i = 1; i<=99; i++){
+                fac*=i;             
+            }
+            string f = fac.ToString(); 
+            int result = 0;
+            for(int i = 0; i<f.Length; i++){               
+                result+=Convert.ToInt32(f[i].ToString());
+            }        
+            Console.WriteLine("final result: "+result);
+        }
+    }
+}
