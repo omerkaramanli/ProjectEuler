@@ -117,9 +117,15 @@ namespace euler
             }
             string res = result.ToString();
             if(res.Length>10){
+                if(res[9]>=5){
                 res = res.Substring(0,10);
                 result = Convert.ToInt64(res);
                 result++;
+                }
+                else{
+                    res = res.Substring(0,10);
+                result = Convert.ToInt64(res);
+                }
             }
             Console.WriteLine(result);
         }
