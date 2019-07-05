@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+            long max=0, maxlen = 0, start = 2;
+            while(start<1000000){
+                long temp = start;
+                long len=0;
+                while(temp!=1){
+                    if(temp%2==0){
+                        temp/=2;
+                        len++;
+                    }
+                    else{
+                        temp = (3*temp)+1;
+                        len++;
+                    }
+                }
+                if(len>maxlen){
+                    maxlen = len;
+                    max = start;
+                }
+                start++;                                  
+            }
+            Console.WriteLine("The number with maximum chain is: {0}", max);
+        }
+    }
+}
