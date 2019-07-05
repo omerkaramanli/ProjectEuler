@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+            int gridX=20;
+            int gridY=20;
+            long pathNum=1;
+            List<int> yGrid = new List<int>();
+            List<int> path = new List<int>();
+
+            for(int k = 1; k<=gridY; k++)   yGrid.Add(k);
+            for(int l = gridX+1; l<=(gridX+gridY); l++) path.Add(l);
+            
+            for(int i = gridX+1; i<(gridX+gridY); i++){
+                for(int m = 0; m<gridY; m++){
+                    if(path[i-gridX-1]%yGrid[m]==0){
+                        path[i-gridX-1] /= yGrid[m];
+                        yGrid[m] /= yGrid[m];
+                    }
+                }
+            }
+            
+            for(int n = gridX+1; n<=(gridX+gridY);n++) pathNum*=path[n-gridX-1];            
+            for(int j = 0; j<gridY; j++) pathNum/=yGrid[j];
+            
+            Console.WriteLine("Total path number of {0}x{1} grid is: {2}", gridX,gridY,pathNum);
+        }
+    }
+}
