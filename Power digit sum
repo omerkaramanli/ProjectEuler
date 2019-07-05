@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+            const int power = 1000;
+            List<int> result = new List<int>();
+            int n=1;
+            result.Add(1);
+            Console.WriteLine(result[0]);
+            int carry = 0;
+            while(n!=power+1){
+                for(int i = 0; i<result.Count;i++){
+                    int temp = result[i];
+                    temp *= 2;
+                    if(carry==1){
+                       temp+=carry;
+                       carry=0;
+                    }
+                    if(temp>=10){
+                        temp-=10;                        
+                        carry = 1;                        
+                    }
+                    result[i] = temp;
+                    if(result.Count-1<=i && carry==1){
+                        result.Add(1);
+                        carry=0;
+                        i++;
+                    }
+                }
+                n++;
+            }
+            int answer = 0;
+            for(int j = 0; j<result.Count;j++) answer += result[j];
+            Console.WriteLine("The sum of the digits of the number 2^1000 is: {0}", answer);z
+        }
+    }
+}
