@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+            DateTime isSunday = new DateTime(1901,1,1);
+            DateTime end = new DateTime(2001,1,1);           
+            bool check =false;
+            int count = 0;
+            while(!check){
+                string name = isSunday.DayOfWeek.ToString();
+                if(name=="Sunday") count++;
+                if(isSunday.Month == 12)    isSunday = isSunday.AddMonths(1);                
+                else isSunday = isSunday.AddMonths(1);
+                
+                if(isSunday.Date >= end) check = true;                
+            }
+            Console.WriteLine(count);
+        }
+    }
+}
