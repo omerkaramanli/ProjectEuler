@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+            List<int> numbers = new List<int> {0,1,2,3,4,5,6,7,8,9};
+            List<int> number = new List<int>();
+            int iteration = 1000000;
+            for(int i = 1; i<=10; i++){
+                int temp = digits(i, ref iteration);
+                number.Add(numbers[temp]);
+                numbers.Remove(numbers[temp]);
+            }
+            for(int j = 0; j<number.Count;j++) Console.Write(number[j]);
+        }
+        static int digits(int digit, ref int iteration){      
+            List<int> factorial = new List<int>();
+            int f = 1;
+            factorial.Add(0);
+            for(int i = 1; i<10; i++){
+                f*=i;
+                factorial.Add(f);
+            }
+            int number = 0;
+            bool check = true;
+            while(check){
+                if((number+1)*factorial[10-digit]>=iteration){ 
+                    if(10-digit == 0) break;
+                    else {
+                        iteration = iteration-(number)*factorial[10-digit];
+                        return number;              
+                    }
+                }
+                else{
+                    if(10-digit == 0) break;
+                    else    number++;
+                }
+            }
+
+            return number;
+        }
+
+        
+        
+    }
+}
