@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+            const int limit = 28123;
+            List<int> abundant = new List<int>();
+            int result = 0;
+            for(int i = 12; i<limit; i++){
+                if(isAbundant(i))   abundant.Add(i);
+            }
+            int[] sumOfAbundant = new int[28123];
+            for(int m = 0; m<abundant.Count-1; m++){
+                for(int n = m; n<abundant.Count; n++){
+                    if((abundant[m]+abundant[n]<28123)){ 
+                        if(sumOfAbundant[abundant[m]+abundant[n]]==0) sumOfAbundant[abundant[m]+abundant[n]]=abundant[m]+abundant[n];
+                    }
+                }             
+            }
+            for(int j = 0; j<limit; j++){
+                if(sumOfAbundant[j]==0) result+=j;
+            }
+            Console.WriteLine(result);
+        }
+
+        static int factorSum(int x){
+            int factors = 0;
+            for(int i = 1; i<=x/2; i++){
+                    if(x%i == 0){
+                        factors += i;
+                    }                    
+                }
+            return factors;
+        }
+
+        static bool isAbundant(int x){
+            if(factorSum(x)>x)  return true;
+            else return false;            
+        }
+
+    }
+}
