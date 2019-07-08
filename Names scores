@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+using System.Diagnostics;
+
+namespace euler
+{
+    class Program
+    {
+        static void Main(string[] args){
+           
+
+            string lines = System.IO.File.ReadAllText(@"C:\Projects\euler\p022_names.txt");
+            string[] names = lines.Split(',');
+            for(int i = 0; i<names.Length; i++) names[i] = names[i].Replace("\"", string.Empty);
+            Array.Sort(names);
+            long result = 0;
+            for(int j = 0; j<names.Length; j++){
+                string temp = names[j];
+                int tem=0;
+                foreach(char c in temp){
+                    tem+= Convert.ToInt16(c)-'A'+1;
+                }
+                tem *= j+1;
+                result+= tem;            } 
+
+            Console.WriteLine("Result is: "+result);
+        }
+    }
+}
