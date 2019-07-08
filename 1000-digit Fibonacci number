@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {        
+        static void Main(string[] args)
+        {
+            string tDig = "";
+            bool check = true;
+            List<Fibonacci> fibonacci = new List<Fibonacci>(){new Fibonacci(){value=0, n = 0}, 
+                                                              new Fibonacci(){value=1, n = 1}};
+            int f = 2;
+            while(check){
+                fibonacci.Add(new Fibonacci(){value = fibonacci[f-1].value+fibonacci[f-2].value, n = f});
+                string temp = Convert.ToString(fibonacci[f].value);
+                if(temp.Length == 1000){
+                    check = false;
+                    tDig = temp;
+                    break;
+                }
+                f++;
+            }
+            Console.WriteLine("First term in fibonacci that has 1000 digits is term: {0} which is {1}", f, tDig);
+        }
+        
+        public class Fibonacci{
+            public BigInteger value;
+            public BigInteger n;
+        }
+
+        public static int Add(int x, int y){
+            return x+y;
+        } 
+    }
+}
