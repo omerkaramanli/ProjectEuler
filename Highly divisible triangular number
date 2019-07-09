@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {        
+        static void Main(string[] args){
+            bool check = true;
+            int i = 0;
+            int count = 1;           
+            List<divisors> numbers = new List<divisors>();
+            numbers.Add(new divisors(){divNum=0, n=i});
+            while(check){
+                i = count*(count+1)/2;
+                if(numbers.Exists(x=> x.n==i/2)){
+                    numbers.Add(new divisors(){divNum=numbers.Find(x=> x.n==i/2).divNum+1, n=i});
+                }
+                else{
+                    int div = 0;
+                    for(int j = 1; j<=i/2; j++){
+                        if(i%j == 0){
+                            div++;
+                        }                    
+                    }
+                    div++;
+                    numbers.Add(new divisors(){divNum=div, n=i});
+                }
+                if(numbers[count].divNum>500) check = false;
+                count++;
+            }
+            count--;
+            Console.WriteLine("The value of the first triangle number to have over five hundred divisors is: "+i);
+        }    
+        public class divisors{
+
+            public int n;
+            public int divNum;
+        }
+    }
+}
