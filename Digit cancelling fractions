@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {
+
+        static void Main(string[] args){
+            List<double> numerator = new List<double>();
+            List<double> denumerator = new List<double>();
+            for(double i = 10.0; i<100.0; i++){
+                for(double j = 10.0; j<100.0; j++){
+                    if(i%10==0 || i%11==0) break;
+                    int temp1 = (int)i/10;
+                    int ch1 = (int)i%10;
+                    int temp2 = (int)j%10;
+                    int ch2 = (int)j/10;
+                    double div = (double)temp1/temp2;
+                    if(i/j==div && i!=j && ch1==ch2){
+                        numerator.Add(i);
+                        denumerator.Add(j);
+                    }
+                }
+            }
+            double result = 1;
+            for(int m = 0; m<numerator.Count; m++){
+                result*=(numerator[m]/denumerator[m]);                
+            }
+            string[] num = result.ToString().Split(',');
+            int numerat = Convert.ToInt32(num[1]);
+            int denumerat = 1;
+            for(int n = 0; n<num[1].Length; n++) denumerat*=10;
+            int res = denumerat/numerat;
+            Console.WriteLine(res);            
+        }
+    }
+}
