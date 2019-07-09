@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {
+
+        static void Main(string[] args){
+            List<int> results = new List<int>();
+            List<int> wtf1 = new List<int>();
+            List<int> wtf2 = new List<int>();
+            int result = 0;
+            for(int i = 2; i<100; i++){                
+                if(i<10){
+                    for(int j = 1000; j<10000; j++){
+                        List<char> str = new List<char>();
+                        int temp = i*j;
+                        if(temp>=10000) break;
+                        else{
+                            string strI = i.ToString();
+                            string strJ = j.ToString();
+                            string strP = temp.ToString();
+                            for(int stI = 0; stI < strI.Length; stI++){
+                                if(strI[stI]=='0'){ break;}
+                                if(!str.Exists(x=>x==strI[stI]))    str.Add(strI[stI]);
+                                else { break;}
+                            }
+                            for(int stJ = 0; stJ < strJ.Length; stJ++){
+                                if(strJ[stJ]=='0'){ break;}
+                                if(!str.Exists(x=>x==strJ[stJ]))    str.Add(strJ[stJ]);
+                                else { break;}
+                            }
+                            for(int stP = 0; stP < strP.Length; stP++){
+                                if(strP[stP]=='0') { break;}
+                                if(!str.Exists(x=>x==strP[stP]))    str.Add(strP[stP]);
+                                else { break;}
+
+                            }                            
+                        }
+                        if(str.Count == 9 && (!str.Exists(x=>x=='0'))&& (!results.Exists(x=>x==temp))){
+                             results.Add(temp);
+                             wtf1.Add(i);
+                             wtf2.Add(j);
+                        }
+                    }
+                }
+                else if(i>10){
+                    for(int j = 100; j<1000; j++){
+                        List<char> str = new List<char>();
+                        int temp = i*j;
+                        if(temp>=10000) break;
+                        else{
+                            string strI = i.ToString();
+                            string strJ = j.ToString();
+                            string strP = temp.ToString();
+                            for(int stI = 0; stI < strI.Length; stI++){
+                                if(strI[stI]=='0'){ break;}
+                                if(!str.Exists(x=>x==strI[stI]))    str.Add(strI[stI]);
+                                else { break;}
+                            }
+                            for(int stJ = 0; stJ < strJ.Length; stJ++){
+                                if(strJ[stJ]=='0') { break;}
+                                if(!str.Exists(x=>x==strJ[stJ]))    str.Add(strJ[stJ]);
+                                else { break;}
+                            }
+                            for(int stP = 0; stP < strP.Length; stP++){
+                                if(strP[stP]=='0') { break;}
+                                if(!str.Exists(x=>x==strP[stP]))    str.Add(strP[stP]);
+                                else { break;}
+                            }                            
+                        }
+                        if(str.Count == 9 && (!str.Exists(x=>x=='0'))&& (!results.Exists(x=>x==temp))){
+                            results.Add(temp);
+                            wtf1.Add(i);
+                            wtf2.Add(j);
+                            }
+                    }
+                }
+                Console.WriteLine(i);
+            }
+            for(int r = 0; r<results.Count; r++) result+=results[r];
+            Console.WriteLine(result);
+        }
+    }
+}
