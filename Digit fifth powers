@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {        
+        static void Main(string[] args){
+            int sum = 0;
+            int limit = (int)Math.Pow(9.0,5.0)*6;
+            for(int i = 10; i<=limit;i++){
+                List<int> num = new List<int>();
+                string str = i.ToString();
+                int temp = i;
+                for(int j = 0; j<str.Length;j++){
+                    num.Add(temp%10);
+                    temp /= 10;
+                }
+                int sumOfDigits = 0;
+                for(int l = 0; l<num.Count; l++){
+                    sumOfDigits+= (int) Math.Pow(Convert.ToDouble(num[l]), 5.0);
+                }
+                if(i == sumOfDigits) sum+= i;
+            }
+            Console.WriteLine("Sum is: "+sum);
+        }
+    }
+}
