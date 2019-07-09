@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {        
+        static void Main(string[] args){
+            List<string> unitdigit = new List<string>(){"","one","two","three","four","five","six","seven","eight","nine"};
+            List<string> ten = new List<string>(){"ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+            List<string> tensdigit = new List<string>(){"twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+            string hundred = "hundred";
+            int result = 0;
+            string thousand = "one thousand";
+            for(int i = 1; i<1000; i++){
+                string res = "";
+                string number = i.ToString();
+                int temp = i;
+                List<int> numbers = new List<int>();
+                for(int j = 0; j<number.Length; j++){
+                    int carry = temp%10;
+                    numbers.Add(carry);
+                    temp /= 10;
+                }
+                
+                if(number.Length==1){
+                    res = unitdigit[numbers[0]];
+                }
+
+                else if(number.Length==2){
+                    if(numbers[1]==1){
+                        string str = ten[numbers[0]];
+                        res = str;
+                    }
+                    else{
+                        string second = tensdigit[numbers[1]-2];
+                        string first = "";
+                        if(numbers[0]!=0)first = unitdigit[numbers[0]];
+                        else first = "";
+                        res = second+first;
+                    }
+                }
+                
+                else{
+                    if(numbers[1]==1){
+                        string str = ten[numbers[0]];
+                        string third = unitdigit[numbers[2]]+hundred+"and";
+                        res = third+str;
+                    }
+                    else if(numbers[1]>1){                        
+                        string first = "";
+                        if(numbers[0]!=0)   first = unitdigit[numbers[0]];
+                        else    first = "";
+                        string second = tensdigit[numbers[1]-2];
+                        string third = unitdigit[numbers[2]]+hundred+"and";
+                        res = third+second+first;
+                    }
+                    else{
+                        string first ="", third ="";
+                        if(numbers[0]!=0){
+                        first = unitdigit[numbers[0]];                        
+                        third = unitdigit[numbers[2]]+hundred+"and";
+                        res = third+first;
+                        }
+                        else{
+                            third = unitdigit[numbers[2]]+hundred;
+                            res = third;
+                        }
+                        
+                    }
+                }
+                result+=res.Length;         
+            }
+            result+=thousand.Length-1;
+            Console.WriteLine("Result is: "+result);
+        }
+    }
+}
