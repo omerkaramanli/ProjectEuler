@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {        
+        static void Main(string[] args){
+            
+            List<BigInteger> results = new List<BigInteger>();
+            for(int a = 2; a<=100; a++){
+                for(int b = 2; b<=100; b++){
+                    BigInteger num = (BigInteger)Math.Pow(Convert.ToDouble(a), Convert.ToDouble(b));
+                    if(!results.Exists(x=>x==num)) results.Add(num);
+                }
+            }
+            Console.WriteLine("There are {0} distinct terms.", results.Count);
+        }
+    }
+}
