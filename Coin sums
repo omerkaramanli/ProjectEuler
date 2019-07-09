@@ -1,0 +1,25 @@
+////////////////////wtf/////////////////////////////
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {
+
+        static void Main(string[] args){
+            int[] ways = new int[201];
+            ways[0]=1;
+            int[] coins = new int[8]{1, 2, 5, 10, 20, 50, 100, 200};
+
+            for(int i = 0; i<coins.Length; i++){
+                for(int j = i; j<201; j++){
+                    if(j-coins[i]>=0)    ways[j]+=ways[j-coins[i]];
+                }
+                Console.WriteLine(i);
+            }
+            Console.WriteLine(ways[200]);
+        }
+    }
+}
