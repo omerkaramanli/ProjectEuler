@@ -125,7 +125,7 @@ namespace euler
                 else{
                     res = res.Substring(0,10);
                 result = Convert.ToInt64(res);
-                }
+                } 
             }
             Console.WriteLine(result);
         }
