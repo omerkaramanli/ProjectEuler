@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {
+
+        static void Main(string[] args){
+            const int limit = 1000000;
+            int sum = 0;
+            List<Numbers> list = new List<Numbers>();
+            for(int i = 1; i<limit; i+=2){
+                string str = i.ToString();
+                int len = str.Length;
+                if(len%2==0){
+                    string firstPart = str.Substring(0, len/2);
+                    string secondPart = str.Substring(len/2);
+                    secondPart = Reverse(secondPart);
+                    if(firstPart==secondPart){
+                        string binary = Convert.ToString(i, 2);
+                        int binLen = binary.Length;
+                        if(binLen%2==0){
+                            string firstBinPart = binary.Substring(0, binLen/2);
+                            string secondBinPart = binary.Substring(binLen/2);
+                            secondBinPart = Reverse(secondBinPart);
+                            if(firstBinPart==secondBinPart){
+                                sum+=i;
+                                list.Add(new Numbers(){integer=i, binary=binary});
+                            }
+                        }
+                        else if(binLen%2==1){
+                            string firstBinPart = binary.Substring(0, binLen/2);
+                            string secondBinPart = binary.Substring(binLen/2+1);
+                            secondBinPart = Reverse(secondBinPart);
+                            if(firstBinPart==secondBinPart){
+                                sum+=i;
+                                list.Add(new Numbers(){integer=i, binary=binary});
+                            }
+                        }
+                    }
+                }
+                else if(len%2==1){
+                    string firstPart = str.Substring(0, len/2);
+                    string secondPart = str.Substring(len/2+1);
+                    secondPart = Reverse(secondPart);
+                    if(firstPart==secondPart){
+                        string binary = Convert.ToString(i, 2);
+                        int binLen = binary.Length;
+                        if(binLen%2==0){
+                            string firstBinPart = binary.Substring(0, binLen/2);
+                            string secondBinPart = binary.Substring(binLen/2);
+                            secondBinPart = Reverse(secondBinPart);
+                            if(firstBinPart==secondBinPart){
+                                sum+=i;
+                                list.Add(new Numbers(){integer=i, binary=binary});
+                            }
+                        }
+                        else if(binLen%2==1){
+                            string firstBinPart = binary.Substring(0, binLen/2);
+                            string secondBinPart = binary.Substring(binLen/2+1);
+                            secondBinPart = Reverse(secondBinPart);
+                            if(firstBinPart==secondBinPart){
+                                sum+=i;
+                                list.Add(new Numbers(){integer=i, binary=binary});
+                            }
+                        }
+                    }
+                }
+
+            }
+            Console.WriteLine(sum);
+        }
+        public static string Reverse( string s )
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse( charArray );
+            return new string( charArray );
+        }
+        public class Numbers{
+            public int integer;
+            public string binary;
+        }
+    }
+}
