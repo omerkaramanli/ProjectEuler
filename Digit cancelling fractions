@@ -32,8 +32,17 @@ namespace unittest
             int numerat = Convert.ToInt32(num[1]);
             int denumerat = 1;
             for(int n = 0; n<num[1].Length; n++) denumerat*=10;
-            int res = denumerat/numerat;
+            int gcd = GCD(numerat, denumerat);
+            int res = denumerat/gcd;
             Console.WriteLine(res);            
         }
+
+        private static int GCD(int a, int b){
+            while (a != 0 && b != 0){
+                if (a > b)  a %= b;
+                else    b %= a;
+            }
+            return a == 0 ? b : a;
+        }        
     }
 }
