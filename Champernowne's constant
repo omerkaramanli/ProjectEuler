@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {
+        static void Main(string[] args){
+            string number = "0";
+            for(int i = 1; ; i++){
+                number+=i;
+                if(number.Length>1000000)   break;
+            }
+            int result = 1;
+            for(int k = 1; k<1000001; k*=10){
+                result *= Convert.ToInt32(number[k].ToString());
+            }
+            Console.WriteLine(result);
+        }
+    }
+}
