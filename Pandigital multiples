@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {
+
+        static void Main(string[] args){
+            int max = 0;
+            for(int i = 1; i<9999; i++){
+                bool check = true;
+                int m = 1;
+                string str = "";
+                while(check){
+                    int temp1 = i;
+                    temp1 *=m;
+                    str += temp1.ToString();
+                    if(str.Length >= 9) check = false;
+                    m++;
+                }
+                if(str.Length==9){
+                    int temp = Convert.ToInt32(str);
+                    List<int> concatenated = new List<int>();
+                    for(int j = 0; j<9; j++){
+                        if(Convert.ToInt32(str[j].ToString())==0) break;
+                        else if(!concatenated.Exists(x=>x==Convert.ToInt32(str[j].ToString()))) concatenated.Add(Convert.ToInt32(str[j].ToString()));
+                    }                
+                if(concatenated.Count==9) max = Convert.ToInt32(str);
+                }
+            }
+            Console.WriteLine(max);
+        }
+    }
+}
