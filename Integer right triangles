@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {
+        static void Main(string[] args){
+            int limit = 1000;
+            int a=0, b=0, c=0;
+            int max = 0;
+            int answer = 0;
+            for(int i = 3; i<=limit;i++){
+                List<string> solutions = new List<string>();
+                for(a=1;a<=i/2;a++){
+                    for(b=1;b<=i/2;b++){
+                        c=i-a-b;
+                        if(a+b+c==i && ((a*a)+(b*b)==(c*c))){
+                            string str = a.ToString()+","+b.ToString()+","+c.ToString();
+                            solutions.Add(str);
+                        }
+                    }
+                }
+                if(solutions.Count>max){ 
+                    max = solutions.Count;
+                    answer = i;
+                }                
+            }
+            Console.WriteLine(answer);
+        }
+    }
+}
