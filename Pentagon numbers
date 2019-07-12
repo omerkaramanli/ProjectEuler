@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {
+        static void Main(string[] args){
+            int min = 0;
+            List<int> pentagonal = new List<int>();
+            for(int j =1; ;j++){
+                int temp = Pn(j);
+                pentagonal.Add(temp);
+                bool check = true;
+                for(int k = 0; k<pentagonal.Count-1; k++){
+                    if(pentagonal.Contains(temp-pentagonal[k])&&isPn(pentagonal,temp,pentagonal[k])){
+                        check = false;
+                        min = temp-pentagonal[k];
+                        break;
+                    }
+                }
+                Console.WriteLine(j);
+                if(!check) break;
+            }
+            Console.WriteLine(min);
+        }
+
+        static int Pn(int n){
+            return n*(3*n-1)/2;
+        }
+
+        static bool isPn(List<int> pen,int t, int p){
+            List<int> pent = new List<int>(pen);
+            int i = 0;
+            for(i = pen.Count+1; Pn(i)<=t+p+10; i++){
+                pent.Add(Pn(i));
+            }
+            pent.Add(Pn(i));
+            if(pent.Contains(t+p)) return true;
+            return false;
+        }
+    }
+}
