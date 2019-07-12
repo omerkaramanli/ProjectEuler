@@ -1,0 +1,120 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {
+        static void Main(string[] args){
+            string first="";
+            string second="";
+            string third="";
+            string result = "";
+            for(int i = 1489; i<9999; i+=2){
+                int f=0,s=0,t=0;
+                third="";second="";first="";
+                if(isPrime(i)){
+                    f=i;
+                    string str = i.ToString();
+                    if(str.Length==4){
+                        string str1=str.Substring(0,3);
+                        first = str; 
+                        int temp = Convert.ToInt32(str1);
+                        temp = swap(temp);
+                        str1 = temp.ToString()+str[3];
+                        temp = Convert.ToInt32(str1);
+                        
+                        if(isPrime(temp)){
+                            s=temp;
+                            str = temp.ToString();
+                            if(str.Length==4){
+                                str1 = str.Substring(0,3);
+                                second = str;
+                                temp = Convert.ToInt32(str1);
+                                temp = swap(temp);
+                                str1 = temp.ToString()+str[3];
+                                temp = Convert.ToInt32(str1);
+                                
+                                if(isPrime(temp)){
+                                    t = temp;
+                                    int max = Math.Max(f,s);
+                                    max = Math.Max(max,t);
+                                    int min = Math.Min(f,s);
+                                    min = Math.Min(min,t);
+                                    third = str1;
+                                    if(f==max){
+                                        if(s==min){
+                                            if(f-t==t-s && f-t!=0){
+                                                result=s.ToString()+t.ToString()+f.ToString();
+                                                break;
+                                            }
+                                        }
+                                        else{
+                                            if(f-s==s-t&& f-s!=0){
+                                                result=t.ToString()+s.ToString()+f.ToString();
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    if(s==max){
+                                        if(f==min){
+                                            if(s-t==t-f&& s-t!=0){
+                                                result=f.ToString()+t.ToString()+s.ToString();
+                                                break;
+                                            }
+                                        }
+                                        else{
+                                            if(s-f==f-t&& f-t!=0){
+                                                result=t.ToString()+f.ToString()+s.ToString();
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    if(t==max){
+                                        if(f==min){
+                                            if(t-s==s-f&& t-s!=0){
+                                                result=f.ToString()+s.ToString()+s.ToString();
+                                                break;
+                                            }
+                                        }
+                                        else{
+                                            if(t-f==f-s&& f-s!=0){
+                                                result=s.ToString()+f.ToString()+t.ToString();
+                                                break;
+                                            }
+                                        }
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+                Console.WriteLine(i);
+            }
+            Console.WriteLine(result);
+        }
+
+        static int swap(int abc){
+            string str = abc.ToString();
+            int a = Convert.ToInt32(str[0].ToString());
+            int b = Convert.ToInt32(str[1].ToString());
+            int c = Convert.ToInt32(str[2].ToString());
+            int temp = a;
+            a = b;
+            b = temp;
+            temp = b;
+            b = c;
+            c = temp;
+            str = a.ToString()+b.ToString() +c.ToString();
+            return Convert.ToInt32(str);            
+        }
+
+        static bool isPrime(int p){
+            for(int i = 2; i<=p/2; i++) if(p%i==0) return false;
+            return true;
+        }
+    }
+}
