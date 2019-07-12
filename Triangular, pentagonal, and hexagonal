@@ -1,0 +1,34 @@
+//////////////TOOK WAY TOO LONG////////////////
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+namespace unittest
+{
+    public class Program
+    {
+        static void Main(string[] args){
+            bool check = true;
+            int result = 0;
+            for(int t = 286; ; t++){
+                int p;
+                for( p = 165; Pn(p)<=Tn(t) ; p++){
+                    int temp = (t+1)/2;
+                    if(Tn(t)==Pn(p) && Pn(p)==Hn(temp)){
+                        check = false;
+                    }
+                }
+                Console.WriteLine(t+"\t"+p+"\t"+Tn(t));
+                if(!check){
+                    result=t;
+                    break;
+                }
+            }
+            Console.WriteLine(Tn(result));
+        }
+
+        static BigInteger Tn(int n){ return (BigInteger) n*(n+1)/2;}
+        static BigInteger Pn(int n){ return (BigInteger) n*((3*n)-1)/2;}
+        static BigInteger Hn(int n){ return (BigInteger) n*((2*n)-1);}
+    }
+}
